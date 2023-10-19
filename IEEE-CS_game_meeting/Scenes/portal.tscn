@@ -1,18 +1,18 @@
 [gd_scene load_steps=4 format=3 uid="uid://vkvhy2djx13k"]
 
-[ext_resource type="Script" path="res://Portal.gd" id="1_ds8ir"]
-[ext_resource type="Texture2D" uid="uid://b3rojfs7bsx52" path="res://Tilesheet.png" id="2_nxgrb"]
+[ext_resource type="Script" path="res://Scenes/Portal.gd" id="1_x7o6t"]
+[ext_resource type="Texture2D" uid="uid://b3rojfs7bsx52" path="res://Assets/Tilesheet.png" id="2_1wo7p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h3ivf"]
 
 [node name="Portal" type="Area2D"]
-script = ExtResource("1_ds8ir")
+script = ExtResource("1_x7o6t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_h3ivf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_nxgrb")
+texture = ExtResource("2_1wo7p")
 hframes = 2
 vframes = 2
 frame = 3

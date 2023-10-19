@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dkoi3xishwfkh"]
+[gd_scene load_steps=8 format=3 uid="uid://dkoi3xishwfkh"]
 
 [ext_resource type="Texture2D" uid="uid://b3rojfs7bsx52" path="res://Tilesheet.png" id="1_oiu3i"]
 [ext_resource type="PackedScene" uid="uid://d06abf21k1edl" path="res://player.tscn" id="2_6xsm7"]
 [ext_resource type="PackedScene" uid="uid://vkvhy2djx13k" path="res://portal.tscn" id="3_e6tk3"]
 [ext_resource type="PackedScene" uid="uid://drpn20x51a6by" path="res://Level_02.tscn" id="4_shxrk"]
+[ext_resource type="PackedScene" uid="uid://2a7h5jo23jae" path="res://Actors/Characters/Player/player.tscn" id="5_m82fu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x5di5"]
 texture = ExtResource("1_oiu3i")
@@ -41,3 +42,6 @@ zoom = Vector2(1.385, 1.385)
 [node name="Portal" parent="." instance=ExtResource("3_e6tk3")]
 position = Vector2(201, -290)
 next_level = ExtResource("4_shxrk")
+
+[node name="Player2" parent="." instance=ExtResource("5_m82fu")]
+position = Vector2(79, -86)

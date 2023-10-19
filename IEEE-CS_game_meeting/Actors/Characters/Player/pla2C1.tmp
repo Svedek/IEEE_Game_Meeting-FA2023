@@ -1,0 +1,87 @@
+[gd_scene load_steps=13 format=3 uid="uid://2a7h5jo23jae"]
+
+[ext_resource type="Script" path="res://Actors/Characters/Player/player.gd" id="1_numbk"]
+[ext_resource type="Texture2D" uid="uid://kakwltxs2io8" path="res://Actors/Characters/Player/playerBase.png" id="2_8gfcf"]
+[ext_resource type="Script" path="res://States/StateManager.gd" id="3_amjlg"]
+[ext_resource type="Script" path="res://Actors/Characters/Player/PlayerIdleState.gd" id="4_tk5fn"]
+[ext_resource type="Script" path="res://Actors/Characters/Player/PlayerRunState.gd" id="5_6qo02"]
+[ext_resource type="Script" path="res://Actors/Characters/Player/PlayerFallState.gd" id="6_1ibde"]
+[ext_resource type="Script" path="res://Actors/Characters/Player/PlayerJumpState.gd" id="7_ccc2j"]
+[ext_resource type="Script" path="res://Actors/Characters/Player/PlayerDashState.gd" id="8_h645k"]
+[ext_resource type="Script" path="res://Actors/Characters/CharacterStats.gd" id="8_rymcj"]
+[ext_resource type="Script" path="res://Actors/Characters/Player/PlayerAttackState.gd" id="9_jlsus"]
+[ext_resource type="Script" path="res://Actors/Characters/Player/PlayerAirAttackState.gd" id="10_3qemg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v01jt"]
+size = Vector2(10, 28)
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 8
+script = ExtResource("1_numbk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+texture = ExtResource("2_8gfcf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_v01jt")
+
+[node name="StateManager" type="Node" parent="."]
+script = ExtResource("3_amjlg")
+starting_state = NodePath("IdleState")
+
+[node name="IdleState" type="Node" parent="StateManager"]
+script = ExtResource("4_tk5fn")
+run_node = NodePath("../RunState")
+fall_node = NodePath("../FallState")
+jump_node = NodePath("../JumpState")
+dash_node = NodePath("../DashState")
+attack_node = NodePath("../AttackState")
+
+[node name="RunState" type="Node" parent="StateManager"]
+script = ExtResource("5_6qo02")
+idle_node = NodePath("../IdleState")
+fall_node = NodePath("../FallState")
+jump_node = NodePath("../JumpState")
+dash_node = NodePath("../DashState")
+attack_node = NodePath("../AttackState")
+
+[node name="FallState" type="Node" parent="StateManager"]
+script = ExtResource("6_1ibde")
+idle_node = NodePath("../IdleState")
+run_node = NodePath("../RunState")
+jump_node = NodePath("../JumpState")
+dash_node = NodePath("../DashState")
+air_attack_node = NodePath("../AirAttackState")
+
+[node name="JumpState" type="Node" parent="StateManager"]
+script = ExtResource("7_ccc2j")
+jump_time = 0.25
+jump_velocity = -320.0
+fall_node = NodePath("../FallState")
+
+[node name="DashState" type="Node" parent="StateManager"]
+script = ExtResource("8_h645k")
+jump_time = null
+jump_velocity = null
+run_node = null
+dash_node = null
+jump_attack_node = null
+animation_name = null
+
+[node name="AttackState" type="Node" parent="StateManager"]
+script = ExtResource("9_jlsus")
+
+[node name="AirAttackState" type="Node" parent="StateManager"]
+script = ExtResource("10_3qemg")
+
+[node name="CharacterStats" type="Node" parent="."]
+script = ExtResource("8_rymcj")
+move_speed = 300.0
+gravity = 40.0
+max_fall_speed = 400.0
+ground_acceleration = 60.0
+air_acceleration = 30.0
+
+[connection signal="death" from="CharacterStats" to="." method="_on_character_death"]

@@ -1,0 +1,37 @@
+extends Node
+class_name StateManager
+
+# State system is based on a tutorial from "The Shaggy Dev" on youtube
+
+@export var starting_state: NodePath
+
+var current_state: BaseState
+
+func change_state(new_state:BaseState) -> void:
+	var dir = Vector2.UP
+	if current_state:
+		dir = current_state.exit()
+		
+	current_state = new_state
+	current_state.enter(dir)
+
+func init(character: CharacterBody2D) -> void:
+	for child in get_children():
+		child.character = character
+		
+	change_state(get_node(starting_state))
+
+func input(event: InputEvent) -> void:
+	var new_state = current_state.input(event)
+	if new_state:
+		change_state(new_state)
+		
+func process(delta: float) -> void:
+	var new_state = current_state.process(delta)
+	if new_state:
+		change_state(new_state)
+		
+func physics_process(delta: float) -> void:
+	var new_state = current_state.physics_process(delta)
+	if new_state:
+		change_state(new_state)

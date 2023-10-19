@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dkoi3xishwfkh"]
+[gd_scene load_steps=8 format=3 uid="uid://yh0vpos5xwrl"]
 
 [ext_resource type="Texture2D" uid="uid://b3rojfs7bsx52" path="res://Assets/Tilesheet.png" id="1_ky1lb"]
 [ext_resource type="PackedScene" uid="uid://d06abf21k1edl" path="res://Scenes/player.tscn" id="2_7x8yh"]
 [ext_resource type="PackedScene" uid="uid://vkvhy2djx13k" path="res://Scenes/portal.tscn" id="3_pqrw6"]
-[ext_resource type="PackedScene" uid="uid://drpn20x51a6by" path="res://ignore/Level_02.tscn" id="4_b1hwy"]
+[ext_resource type="PackedScene" uid="uid://drpn20x51a6by" path="res://Levels/Sam/Level_02.tscn" id="4_qx53a"]
 [ext_resource type="PackedScene" uid="uid://bdjwuu3snmxl0" path="res://Scenes/enemy.tscn" id="5_krde2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x5di5"]
@@ -52,7 +52,7 @@ zoom = Vector2(1.385, 1.385)
 
 [node name="Portal" parent="." instance=ExtResource("3_pqrw6")]
 position = Vector2(201, -290)
-next_level = ExtResource("4_b1hwy")
+next_level = ExtResource("4_qx53a")
 
 [node name="Enemy" parent="." instance=ExtResource("5_krde2")]
 position = Vector2(311, -100)

@@ -27,6 +27,14 @@ func _physics_process(delta):
 
 	move_and_slide()
 
+func perish():
+	visible = false
+	process_mode = Node.PROCESS_MODE_DISABLED
+	await get_tree().create_timer(1.0).timeout
+	get_tree().reload_current_scene()
 
 func _on_area_2d_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
-	print("die")
+	perish()
+
+func _on_area_2d_body_entered(body):
+	perish()

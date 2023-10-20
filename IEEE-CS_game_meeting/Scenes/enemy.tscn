@@ -6,6 +6,7 @@
 size = Vector2(12, 12)
 
 [node name="Enemy" type="CharacterBody2D"]
+collision_layer = 8
 
 [node name="Enemy" type="Sprite2D" parent="."]
 position = Vector2(0, -8)

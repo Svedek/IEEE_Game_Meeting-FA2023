@@ -1,8 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://bdjwuu3snmxl0"]
+[gd_scene load_steps=5 format=3 uid="uid://bdjwuu3snmxl0"]
 
 [ext_resource type="Texture2D" uid="uid://v2ac1waehivl" path="res://Assets/enemy.png" id="1_ylxro"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sd4qa"]
+size = Vector2(12, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c4wfh"]
+size = Vector2(10, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ej1tr"]
 size = Vector2(12, 12)
 
 [node name="Enemy" type="CharacterBody2D"]
@@ -15,3 +21,17 @@ texture = ExtResource("1_ylxro")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_sd4qa")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -13)
+shape = SubResource("RectangleShape2D_c4wfh")
+debug_color = Color(0.737255, 0.466667, 0, 0.419608)
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_ej1tr")
+debug_color = Color(1, 0.309804, 0.541176, 0.419608)
